@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PiP</string>
+    <string name="pip_mode_not_supported">Your device doesn\'t support PiP mode</string>
+    <string name="pip_mode_permission_not_granted">PiP mode permission not granted</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="local_video">Local Video</string>
+    <string name="hls_stream">HLS Stream</string>
+    <string name="pause">Pause</string>
+    <string name="play">Play</string>
+</resources>
