@@ -137,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         logMessage("onStart")
 
         if (isPipModeSupported && isPipModePermissionGranted) {
+            logMessage("Player is setup in onStart")
             setupPlayer()
         }
 
@@ -203,6 +204,7 @@ class MainActivity : AppCompatActivity() {
         logMessage("onResume")
 
         if (!isPipModeSupported || !isPipModePermissionGranted) {
+            logMessage("Player is setup in onResume")
             setupPlayer()
         }
 
@@ -214,6 +216,7 @@ class MainActivity : AppCompatActivity() {
         logMessage("onPause")
 
         if (!isPipModeSupported || !isPipModePermissionGranted) {
+            logMessage("Player is released in onPause")
             wasVideoPlaying = player.playWhenReady
             playerPosition = player.currentPosition
             releasePlayer()
@@ -227,6 +230,7 @@ class MainActivity : AppCompatActivity() {
         logMessage("onStop")
 
         if (isPipModeSupported && isPipModePermissionGranted) {
+            logMessage("Player is released in onStop")
             wasVideoPlaying = player.playWhenReady
             playerPosition = player.currentPosition
             releasePlayer()
