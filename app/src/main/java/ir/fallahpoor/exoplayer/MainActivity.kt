@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         logMessage("onStart")
 
-        if (isPipModeSupported) {
+        if (isPipModeSupported && isPipModePermissionGranted) {
             setupPlayer()
         }
 
@@ -202,7 +202,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         logMessage("onResume")
 
-        if (!isPipModeSupported) {
+        if (!isPipModeSupported || !isPipModePermissionGranted) {
             setupPlayer()
         }
 
