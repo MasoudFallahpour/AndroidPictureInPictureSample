@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    internal fun updatePipModeActions(
+    private fun updatePipModeActions(
         @DrawableRes iconId: Int,
         title: String,
         controlType: Int,
@@ -254,10 +254,10 @@ class MainActivity : AppCompatActivity() {
 
         if (isInPipMode) {
             registerReceiver(broadcastReceiver, IntentFilter(ACTION_MEDIA_CONTROL))
-            showHideControls(false)
+            showHideControls(show = false)
         } else {
             unregisterReceiver(broadcastReceiver)
-            showHideControls(true)
+            showHideControls(show = true)
         }
 
     }
@@ -277,7 +277,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, message)
     }
 
-    private companion object {
+    companion object {
         private const val TAG = "@@@@@@"
         private const val ACTION_MEDIA_CONTROL = "media_control"
         private const val EXTRA_CONTROL_TYPE = "control_type"
