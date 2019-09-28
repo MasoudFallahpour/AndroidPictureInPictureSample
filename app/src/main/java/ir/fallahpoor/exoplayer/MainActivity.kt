@@ -18,7 +18,8 @@ import android.os.Process
 import android.util.Log
 import android.util.Rational
 import android.view.View
-
+import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.Player
@@ -28,12 +29,8 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 import com.google.android.exoplayer2.util.Util
 import com.google.android.material.snackbar.Snackbar
-
-import java.util.ArrayList
-
-import androidx.annotation.DrawableRes
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -94,7 +91,11 @@ class MainActivity : AppCompatActivity() {
         enterPipModeImageView.setOnClickListener {
             if (isPipModeSupported) {
                 if (isPipModePermissionGranted) {
-                    enterPictureInPictureMode(getPictureInPictureParamsBuilder().build())
+                    val enteredPipMode: Boolean =
+                        enterPictureInPictureMode(getPictureInPictureParamsBuilder().build())
+                    if (!enteredPipMode) {
+                        showPipModeNotWorkingSnackBar()
+                    }
                 } else {
                     showPermissionNotGrantedSnackbar()
                 }
@@ -111,6 +112,10 @@ class MainActivity : AppCompatActivity() {
             pictureInPictureParamsBuilder?.setAspectRatio(aspectRatio)
         }
         return (pictureInPictureParamsBuilder as PictureInPictureParams.Builder)
+    }
+
+    private fun showPipModeNotWorkingSnackBar() {
+        Snackbar.make(playerView, getString(R.string.pip_mode_not_working), Snackbar.LENGTH_LONG)
     }
 
     private fun showPermissionNotGrantedSnackbar() {
